@@ -1,0 +1,297 @@
+/* ═══════════════════════════════════════════════
+   Kareem Adawy — Global Design System
+   ═══════════════════════════════════════════════ */
+
+:root {
+    --color-bg-primary: #FAF9F6;
+    --color-bg-secondary: #F0EFEA;
+    --color-text-primary: #1A1A1A;
+    --color-text-secondary: #4A4A4A;
+    --color-accent: #B8860B;
+    --font-sans: 'Alexandria', sans-serif;
+    --font-serif: 'Amiri', serif;
+
+    /* Responsive layout tokens */
+    --sidebar-width: 80px;
+    --content-pl: calc(var(--sidebar-width) + 5vw);
+    --content-pr: 5vw;
+    --section-py: 15vh;
+}
+
+/* ─── Reset ─── */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.serif {
+    font-family: var(--font-serif);
+    font-weight: 400;
+}
+
+.sans {
+    font-family: var(--font-sans);
+    font-weight: 300;
+}
+
+.app-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ─── Premium Utilities ─── */
+.glass-effect {
+    background: rgba(250, 249, 246, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.page-transition-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* ═══════════════════════════════════════════════
+   Global Navigation — Desktop Sidebar + Navbar
+   ═══════════════════════════════════════════════ */
+.global-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: var(--sidebar-width);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px 0;
+    z-index: 1000;
+    mix-blend-mode: difference;
+    border-right: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.sidebar-socials {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+}
+
+.global-navbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: calc(100% - var(--sidebar-width));
+    padding: 40px 60px;
+    display: flex;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.navbar-links {
+    display: flex;
+    gap: 40px;
+}
+
+.nav-link {
+    background: none;
+    border: none;
+    color: var(--color-accent);
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    text-transform: uppercase;
+    opacity: 0.85;
+    transition: all 0.4s ease;
+    padding: 5px 0;
+    position: relative;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.nav-link:hover,
+.nav-link[aria-current="page"] {
+    opacity: 1;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0%;
+    height: 1px;
+    background-color: #ffffff;
+    transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-link:hover::after,
+.nav-link[aria-current="page"]::after {
+    width: 100%;
+}
+
+/* ─── Mobile Hamburger ─── */
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 1002;
+}
+
+.mobile-menu-btn span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--color-text-primary);
+    margin: 6px 0;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-menu-btn.open span {
+    background: #ffffff;
+}
+
+.mobile-menu-btn.open span:nth-child(1) {
+    transform: translateY(7.5px) rotate(45deg);
+}
+
+.mobile-menu-btn.open span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.mobile-menu-btn.open span:nth-child(3) {
+    transform: translateY(-7.5px) rotate(-45deg);
+}
+
+/* ─── Mobile Overlay Nav ─── */
+.mobile-nav-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    background: rgba(5, 5, 5, 0.97);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+}
+
+.mobile-nav-link {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    font-weight: 300;
+    cursor: pointer;
+    padding: 1.2rem 2rem;
+    letter-spacing: 1px;
+    opacity: 0.7;
+    transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link[aria-current="page"] {
+    opacity: 1;
+    color: var(--color-accent);
+}
+
+/* ─── Gallery Scrollbar ─── */
+.gallery-scroll-strip {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.gallery-scroll-strip::-webkit-scrollbar {
+    display: none;
+}
+
+/* ═══════════════════════════════════════════════
+   Responsive — Tablet (≤ 1024px)
+   ═══════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+    :root {
+        --content-pl: calc(var(--sidebar-width) + 3vw);
+        --content-pr: 3vw;
+        --section-py: 10vh;
+    }
+}
+
+/* ═══════════════════════════════════════════════
+   Responsive — Mobile (≤ 768px)
+   ═══════════════════════════════════════════════ */
+@media (max-width: 768px) {
+    :root {
+        --sidebar-width: 0px;
+        --content-pl: 7vw;
+        --content-pr: 7vw;
+        --section-py: 8vh;
+    }
+
+    /* Hide desktop sidebar */
+    .global-sidebar {
+        display: none !important;
+    }
+
+    /* Navbar goes full-width, compact, auto-inverts over dark/light */
+    .global-navbar {
+        width: 100% !important;
+        padding: 24px var(--content-pr) !important;
+        justify-content: space-between !important;
+        mix-blend-mode: difference;
+    }
+
+    /* Hide desktop nav links (replaced by hamburger) */
+    .navbar-links {
+        display: none !important;
+    }
+
+    /* Show hamburger */
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    /* Touch-safe targets */
+    button,
+    a {
+        min-height: 44px;
+        min-width: 44px;
+    }
+}
+
+/* ═══════════════════════════════════════════════
+   Responsive — Small Mobile (≤ 480px)
+   ═══════════════════════════════════════════════ */
+@media (max-width: 480px) {
+    :root {
+        --content-pl: 5vw;
+        --content-pr: 5vw;
+        --section-py: 6vh;
+    }
+}

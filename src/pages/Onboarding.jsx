@@ -66,8 +66,8 @@ const Onboarding = () => {
                                     transition={{ duration: 1.5, ease: EASE }}
                                     style={{ position: 'absolute', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
                                 >
-                                    <span className="serif" style={{ fontSize: '4rem', fontWeight: 600, color: '#ffffff', letterSpacing: '-2px' }}>K</span>
-                                    <span className="serif" style={{ fontSize: '4.5rem', fontWeight: 200, fontStyle: 'italic', color: 'rgba(255,255,255,0.7)', marginLeft: '-10px' }}>A</span>
+                                    <span className="sans" style={{ fontSize: '3.5rem', fontWeight: 600, color: '#ffffff', letterSpacing: '-2px' }}>K</span>
+                                    <span className="sans" style={{ fontSize: '3.5rem', fontWeight: 300, color: 'rgba(255,255,255,0.3)', marginLeft: '2px' }}>A</span>
                                 </motion.div>
                             )}
                         </AnimatePresence>
@@ -83,30 +83,32 @@ const Onboarding = () => {
                                     style={{ position: 'absolute', textAlign: 'center' }}
                                 >
                                     <motion.h1
-                                        className="serif"
+                                        className="sans"
                                         style={{
-                                            fontSize: 'clamp(3rem, 8vw, 6rem)',
+                                            fontSize: 'clamp(2.5rem, 6vw, 5rem)',
                                             color: '#ffffff',
                                             margin: 0,
-                                            fontWeight: 300,
-                                            letterSpacing: '0.05em',
-                                            lineHeight: 1
+                                            fontWeight: 600,
+                                            letterSpacing: '-1px', // Tight modern tracking for Arabic
+                                            lineHeight: 1.2, // Increased line-height to fix Arabic descenders overlapping
+                                            paddingBottom: '0.5rem' // Extra breathing room at the bottom of the title
                                         }}
                                     >
                                         كريم عدوي
                                     </motion.h1>
                                     <motion.p
-                                        initial={{ opacity: 0, y: 10 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: 0.4, duration: 1, ease: EASE }}
+                                        initial={{ opacity: 0, filter: 'blur(5px)', y: 5 }}
+                                        animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
+                                        transition={{ delay: 0.8, duration: 1.4, ease: EASE }}
                                         className="sans"
                                         style={{
-                                            fontSize: 'clamp(0.8rem, 2vw, 1.2rem)',
-                                            color: 'var(--color-accent)',
-                                            letterSpacing: '4px',
-                                            marginTop: '1.5rem',
-                                            fontWeight: 500,
-                                            textTransform: 'uppercase'
+                                            fontSize: 'clamp(0.6rem, 1.2vw, 0.75rem)',
+                                            color: 'rgba(255, 255, 255, 0.4)', // Premium stark architectural grey. No gold.
+                                            letterSpacing: '12px', // Extreme luxurious wide tracking
+                                            marginTop: '2.5rem', // Significantly increased margin to separate from the title
+                                            fontWeight: 400,
+                                            textTransform: 'uppercase',
+                                            marginRight: '-12px' // Offset tracking for visual centering
                                         }}
                                     >
                                         Architecture & Interior

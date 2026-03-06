@@ -316,7 +316,7 @@ export default function ProjectDetails() {
                         initial={{ opacity: 0, y: 35 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1.4, delay: 0.9, ease: EASE }}
-                        style={{ position: 'relative', zIndex: 1, maxWidth: '1000px' }}
+                        style={{ position: 'relative', zIndex: 1, maxWidth: '1000px', marginBottom: '-5vh' }} // Negative margin to push text deeper into the background overlap
                     >
                         <p className="sans" style={{
                             color: 'var(--color-accent)', letterSpacing: '5px',
@@ -325,9 +325,10 @@ export default function ProjectDetails() {
                         }}>
                             {project.category}
                         </p>
-                        <h1 className="serif" style={{
-                            fontSize: 'clamp(2.8rem, 10vw, 8rem)',
-                            lineHeight: 0.95, margin: 0, fontWeight: 300, letterSpacing: '-2px',
+                        <h1 className="sans" style={{
+                            fontSize: 'clamp(3rem, 8vw, 6rem)', // Reduced size, more elegant
+                            lineHeight: 1.1, margin: 0, fontWeight: 700, letterSpacing: '-1px', // Modern bold weight
+                            textShadow: '0 10px 30px rgba(0,0,0,0.8)'
                         }}>
                             {project.title}
                         </h1>
@@ -341,13 +342,14 @@ export default function ProjectDetails() {
                             onClick={toggleMute}
                             aria-label={isMuted ? 'تشغيل الصوت' : 'كتم الصوت'}
                             style={{
-                                position: 'absolute', bottom: '4vh', right: 'var(--content-pr)',
-                                zIndex: 10, width: '48px', height: '48px', borderRadius: '50%',
+                                position: 'absolute', bottom: '4vh', left: 'max(4vw, 100px)', // Moved to the LEFT side, with a min-offset so it doesn't hit the sidebar
+                                zIndex: 100, width: '48px', height: '48px', borderRadius: '50%',
                                 border: '1px solid rgba(255,255,255,0.2)',
                                 background: 'rgba(255,255,255,0.08)',
                                 backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
                                 cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
                                 color: '#ffffff', transition: 'all .3s ease',
+                                boxShadow: '0 4px 15px rgba(0,0,0,0.3)'
                             }}
                             onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.15)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.4)'; }}
                             onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.08)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.2)'; }}
@@ -587,6 +589,6 @@ export default function ProjectDetails() {
                     }
                 }
             `}} />
-        </PageTransition>
+        </PageTransition >
     );
 }

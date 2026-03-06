@@ -41,7 +41,7 @@ h4,
 h5,
 h6,
 .serif {
-    font-family: var(--font-serif);
+    font-family: var(--font-sans);
     font-weight: 400;
 }
 

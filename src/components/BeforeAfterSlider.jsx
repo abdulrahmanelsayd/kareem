@@ -100,10 +100,12 @@ export default function BeforeAfterSlider({ beforeImage, afterImage }) {
             {/* Slider Line + Handle */}
             <div style={{
                 position: 'absolute', top: 0, bottom: 0,
-                left: `calc(${sliderPos}% - 2px)`,
+                left: `${sliderPos}%`, // Position exactly at percentage
                 width: '4px', backgroundColor: '#ffffff',
                 boxShadow: '0 0 10px rgba(0,0,0,0.5)',
-                zIndex: 2, display: 'flex', alignItems: 'center', justifyContent: 'center',
+                zIndex: 2,
+                transform: 'translateX(-50%)', // Center the line itself exactly on the cut
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
             }}>
                 <div style={{
                     width: '48px', height: '48px',
@@ -111,10 +113,16 @@ export default function BeforeAfterSlider({ beforeImage, afterImage }) {
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     boxShadow: '0 2px 10px rgba(0,0,0,0.3)',
                     cursor: 'grab',
+                    position: 'absolute', // Break out of flex flow to center perfectly
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)' // Perfect pixel-center alignment
                 }}>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <polyline points="15 18 9 12 15 6" />
-                        <polyline points="9 18 15 12 9 6" style={{ transform: 'translateX(6px)' }} />
+                        {/* Left half of the diamond (centered at x=12) */}
+                        <polyline points="12 18 6 12 12 6" />
+                        {/* Right half of the diamond (centered at x=12) */}
+                        <polyline points="12 18 18 12 12 6" />
                     </svg>
                 </div>
             </div>
